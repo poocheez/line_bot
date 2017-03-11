@@ -1,6 +1,9 @@
 ﻿<?php
 require __DIR__."/../vendor/autoload.php";
 
+use LINE\LINEBot;
+use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+
 define("LINE_MESSAGING_API_CHANNEL_SECRET", 'b41689685c7ba1f9c06cf19f91153138');
 define("LINE_MESSAGING_API_CHANNEL_TOKEN", 'SMYNoJUaCeRSLcQNK2pYwx1IvTrHhxh4mIQL/tweCR8/4hMuiB72A7XDp6mMDWLQoCL45e1uOmdy4zrUza0B1i20us0ITw7B/+CvixgEX6p6Kzgne9C0NlqbFqDGw71dgB6ywQNX/PQiUpVUPYXXNgdB04t89/1O/w1cDnyilFU=');
 
