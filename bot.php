@@ -4,10 +4,8 @@ define("CHANNEL_SECRET", 'b41689685c7ba1f9c06cf19f91153138');
 
 require __DIR__."/vendor/autoload.php";
 
-$bot = new \LINE\LINEBot(
-    new \LINE\LINEBot\HTTPClient\CurlHTTPClient(CHANNEL_TOKEN),
-    ['channelSecret' => CHANNEL_SECRET]
-);
+$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(CHANNEL_TOKEN);
+$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => CHANNEL_SECRET]);
 
 $signature = $_SERVER["HTTP_".\LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 $body = file_get_contents("php://input");
