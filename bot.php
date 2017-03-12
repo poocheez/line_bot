@@ -16,7 +16,9 @@ foreach ($events as $event) {
     if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {
         $reply_token = $event->getReplyToken();
         $text = $event->getText();
-        $bot->replyText($reply_token, $text . "\r\n #พี่หมีกล่าว...");
+		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
+		$response = $bot->replyMessage($reply_token, $textMessageBuilder);
+        //$bot->replyText($reply_token, $text . "\r\n #พี่หมีกล่าว...");
     }
 }
 ?>
