@@ -13,6 +13,7 @@ $body = file_get_contents("php://input");
 $events = $bot->parseEventRequest($body, $signature);
 
 foreach ($events as $event) {
+    echo '===== Start =====';
     if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {
         $reply_token = $event->getReplyToken();
         $text = $event->getText();
@@ -35,6 +36,7 @@ foreach ($events as $event) {
         $reply_token = $event->getReplyToken();
         $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder('1','1');
         $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
-        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        echo ' debug : ' . $response->getHTTPStatus() . ' ' . $response->getRawBody();
     }
+    echo '===== End =====';
 }
