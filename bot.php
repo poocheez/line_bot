@@ -29,7 +29,7 @@ foreach ($events as $event) {
                 )
 			)
 
-		$response = $bot->replyMessage($reply_token, $templateBuilder);
+		$response = $bot->replyMessage($reply_token, $textMessageBuilder);
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
 }
