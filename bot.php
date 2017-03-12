@@ -20,9 +20,9 @@ foreach ($events as $event) {
 		$buttonTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder(
 			'button title', 'button button', 'http://vignette3.wikia.nocookie.net/pokemon/images/7/71/216Teddiursa_OS_anime_2.png',
 			[
-				new PostbackTemplateActionBuilder('postback label', 'post=back'),
-				new MessageTemplateActionBuilder('message label', 'test message'),
-				new UriTemplateActionBuilder('uri label', 'https://www.google.com'),
+				new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('postback label', 'post=back'),
+				new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('message label', 'test message'),
+				new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('uri label', 'https://www.google.com'),
 			]
 		)
 		$templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder)
