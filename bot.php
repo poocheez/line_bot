@@ -60,13 +60,13 @@ foreach ($events as $event) {
         }
         elseif (strpos(strtolower($text), 'order pizza') !== false || strpos(strtolower($text), 'order steak') !== false ||
             strpos(strtolower($text), 'order hamburger') !== false || strpos(strtolower($text), 'order salad') !== false) {
-            $confirmTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder('Confirm',
+            $confirmTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder('Are you sure?',
                 [
                     new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('Yes', 'Yes'),
                     new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('No', 'No'),
                 ]
             );
-            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Are you sure?', $confirmTemplateBuilder);
+            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Confirm', $confirmTemplateBuilder);
         }
         else {
             $messageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
