@@ -26,12 +26,12 @@ foreach ($events as $event) {
                     new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('More Information', 'https://www.google.com'),
                 ]
             );
-            $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
+            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
         }
         else {
-            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
+            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
         }
-        $response = $bot->replyMessage($reply_token, $templateMessageBuilder);
+        $response = $bot->replyMessage($reply_token, $messageBuilder);
         error_log(print_r($response->getHTTPStatus() . ' ' . $response->getRawBody(), TRUE));
 	}
 	elseif ($event instanceof \LINE\LINEBot\Event\MessageEvent\StickerMessage) {
