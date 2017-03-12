@@ -20,7 +20,7 @@ foreach ($events as $event) {
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
 
         $buttonTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder(
-            'button title', 'button button', 'http://img08.deviantart.net/9393/i/2015/032/3/5/teddiursa_pokedoll_by_kirstysokawaii-d8gbbjs.png',
+            'button title', 'button button', 'https://dl.dropboxusercontent.com/u/76796733/teddiursa%20.png',
             [
                 new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('postback label', 'post=back'),
                 new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('message label', 'test message'),
@@ -29,7 +29,7 @@ foreach ($events as $event) {
         );
         $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
 
-        $response = $bot->replyMessage($reply_token, $textMessageBuilder);
+        $response = $bot->replyMessage($reply_token, $templateMessageBuilder);
         error_log(print_r($response->getHTTPStatus() . ' ' . $response->getRawBody(), TRUE));
 	}
 	elseif ($event instanceof \LINE\LINEBot\Event\MessageEvent\StickerMessage) {
