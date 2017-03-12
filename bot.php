@@ -29,7 +29,7 @@ foreach ($events as $event) {
         $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
 
         $response = $bot->replyMessage($reply_token, $templateMessageBuilder);
-        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        echo ' debug : ' . $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
 	elseif ($event instanceof \LINE\LINEBot\Event\MessageEvent\StickerMessage) {
         $reply_token = $event->getReplyToken();
