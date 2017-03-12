@@ -16,24 +16,25 @@ foreach ($events as $event) {
     if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {
         $reply_token = $event->getReplyToken();
         $text = $event->getText();
-        $type = $event->getType();
 
-          
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
+        $buttonTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder(
+            'button title', 'button button', 'http://vignette3.wikia.nocookie.net/pokemon/images/7/71/216Teddiursa_OS_anime_2.png',
+            [
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('postback label', 'post=back'),
+                new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('message label', 'test message'),
+                new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('uri label', 'https://www.google.com'),
+            ]
+        );
+        $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
 
-            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
-            $buttonTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder(
-                'button title', 'button button', 'http://vignette3.wikia.nocookie.net/pokemon/images/7/71/216Teddiursa_OS_anime_2.png',
-                [
-                    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('postback label', 'post=back'),
-                    new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('message label', 'test message'),
-                    new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('uri label', 'https://www.google.com'),
-                ]
-            );
-            $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
-
-            $textMessageBuilder2 = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($type);
-            $response = $bot->replyMessage($reply_token, $textMessageBuilder2);
-
-		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        $response = $bot->replyMessage($reply_token, $textMessageBuilder);
+        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
+	elseif ($event instanceof \LINE\LINEBot\Event\MessageEvent\StickerMessage) {
+        $reply_token = $event->getReplyToken();
+        $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder('1','1');
+        $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
+        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+    }
 }
