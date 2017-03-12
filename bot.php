@@ -20,8 +20,6 @@ foreach ($events as $event) {
         if($type == 'sticker') {
             $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder('1','1');
             $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
-            $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder('1','2');
-            $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
         }
         else {
             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
