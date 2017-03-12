@@ -34,29 +34,39 @@ foreach ($events as $event) {
                     'Pizza', '#พี่หมีกล่าว...', 'https://dl.dropboxusercontent.com/u/76796733/pizza.jpg',
                     [
                         new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('Order Now', 'Order Pizza'),
-                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back', 'post=back'),
+                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back', 'main'),
                     ]),
                 new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder(
                     'Steak', '#พี่หมีกล่าว...', 'https://dl.dropboxusercontent.com/u/76796733/steak.jpg',
                     [
                         new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('Order Now', 'Order Steak'),
-                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back', 'post=back'),
+                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back', 'main'),
                     ]),
                 new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder(
                     'Hamburger', '#พี่หมีกล่าว...', 'https://dl.dropboxusercontent.com/u/76796733/hamburger.jpg',
                     [
                         new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('Order Now', 'Order Hamburger'),
-                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back', 'post=back'),
+                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back', 'main'),
                     ]),
                 new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder(
                     'Salad', '#พี่หมีกล่าว...', 'https://dl.dropboxusercontent.com/u/76796733/salad.jpg',
                     [
                         new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('Order Now', 'Order Salad'),
-                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back', 'post=back'),
+                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back','main'),
                     ])
             ];
             $carouselColumnTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder($carouselColumnTemplateBuilder);
             $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Order Product', $carouselColumnTemplateBuilder);
+        }
+        elseif (strpos(strtolower($text), 'order pizza') !== false || strpos(strtolower($text), 'order steak') !== false ||
+            strpos(strtolower($text), 'order hamburger') !== false || strpos(strtolower($text), 'order salad') !== false) {
+            $confirmTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder('Confirm',
+                [
+                    new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('Yes', 'Yes'),
+                    new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('No', 'No'),
+                ]
+            );
+            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Are you sure?', $confirmTemplateBuilder);
         }
         else {
             $messageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
