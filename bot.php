@@ -17,8 +17,17 @@ foreach ($events as $event) {
         $reply_token = $event->getReplyToken();
         $text = $event->getText();
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
+		$buttonTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder(
+			'button title', 'button button', 'https://example.com/thumbnail.jpg',
+			[
+				new PostbackTemplateActionBuilder('postback label', 'post=back'),
+				new MessageTemplateActionBuilder('message label', 'test message'),
+				new UriTemplateActionBuilder('uri label', 'https://example.com'),
+			]
+		)
+		$templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder)
 
-		$response = $bot->replyMessage($reply_token, $textMessageBuilder);
+		$response = $bot->replyMessage($reply_token, $templateMessageBuilder);
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
 }
