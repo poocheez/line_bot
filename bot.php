@@ -17,11 +17,9 @@ foreach ($events as $event) {
         $reply_token = $event->getReplyToken();
         $text = $event->getText();
         $type = $event->getType();
-        if($type == 'sticker') {
-            $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder('1','1');
-            $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
-        }
-        else {
+
+          
+
             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
             $buttonTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder(
                 'button title', 'button button', 'http://vignette3.wikia.nocookie.net/pokemon/images/7/71/216Teddiursa_OS_anime_2.png',
@@ -35,7 +33,7 @@ foreach ($events as $event) {
 
             $textMessageBuilder2 = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($type);
             $response = $bot->replyMessage($reply_token, $textMessageBuilder2);
-        }
+
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
 }
