@@ -29,7 +29,7 @@ foreach ($events as $event) {
 
 		$MessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('http://vignette3.wikia.nocookie.net/pokemon/images/7/71/216Teddiursa_OS_anime_2.png','http://vignette3.wikia.nocookie.net/pokemon/images/7/71/216Teddiursa_OS_anime_2.png');
 
-		$response = $bot->replyMessage($reply_token, $MessageBuilder);
+		$response = $bot->replyMessage($reply_token, $textMessageBuilder);
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
 }
