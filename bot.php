@@ -13,7 +13,7 @@ $body = file_get_contents("php://input");
 $events = $bot->parseEventRequest($body, $signature);
 
 foreach ($events as $event) {
-    echo '===== Start =====';
+    error_log(print_r('===== Start =====', TRUE));
     if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {
         $reply_token = $event->getReplyToken();
         $text = $event->getText();
@@ -30,13 +30,13 @@ foreach ($events as $event) {
         $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
 
         $response = $bot->replyMessage($reply_token, $textMessageBuilder);
-        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        error_log(print_r($response->getHTTPStatus() . ' ' . $response->getRawBody(), TRUE));
 	}
 	elseif ($event instanceof \LINE\LINEBot\Event\MessageEvent\StickerMessage) {
         $reply_token = $event->getReplyToken();
         $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder('1','1');
         $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
-        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        error_log(print_r($response->getHTTPStatus() . ' ' . $response->getRawBody(), TRUE));
     }
-    echo '===== End =====';
+    error_log(print_r('===== End =====', TRUE));
 }
