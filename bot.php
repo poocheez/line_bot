@@ -34,7 +34,7 @@ foreach ($events as $event) {
             $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
 
             $textMessageBuilder2 = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($type);
-            $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
+            $response = $bot->replyMessage($reply_token, $stickerMessageBuilder2);
         }
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
