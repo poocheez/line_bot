@@ -55,7 +55,8 @@ foreach ($events as $event) {
                         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('Back', 'post=back'),
                     ])
             ];
-            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder($carouselColumnTemplateBuilder);
+            $carouselColumnTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder($carouselColumnTemplateBuilder);
+            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Order Product', $carouselColumnTemplateBuilder);
         }
         else {
             $messageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
