@@ -17,7 +17,6 @@ foreach ($events as $event) {
         $reply_token = $event->getReplyToken();
         $text = $event->getText();
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
-		
 
 		$response = $bot->replyMessage($reply_token, $textMessageBuilder);
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
