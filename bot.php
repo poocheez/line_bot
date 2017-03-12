@@ -33,8 +33,10 @@ foreach ($events as $event) {
             );
             $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
 
+            $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder('1','1');
+            $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
 
-            $response = $bot->replyMessage($reply_token, $templateMessageBuilder);
+            $response = $bot->replyMessage($reply_token, $stickerMessageBuilder);
         }
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
