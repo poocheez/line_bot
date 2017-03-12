@@ -17,18 +17,20 @@ foreach ($events as $event) {
     if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {
         $reply_token = $event->getReplyToken();
         $text = $event->getText();
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
-
-        $buttonTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder(
-            'button title', 'button button', 'https://dl.dropboxusercontent.com/u/76796733/teddiursa%20.png',
-            [
-                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('postback label', 'post=back'),
-                new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('message label', 'test message'),
-                new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('uri label', 'https://www.google.com'),
-            ]
-        );
-        $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
-
+        if (strpos(strtolower($text), 'start') !== false || strpos(strtolower($text), 'main') !== false) {
+            $buttonTemplateBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder(
+                'Main Menu', '#พี่หมีกล่าว...', 'https://dl.dropboxusercontent.com/u/76796733/teddiursa%20.png',
+                [
+                    //new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder('postback label', 'post=back'),
+                    new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('Order Product', 'Order Product'),
+                    new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('More Information', 'https://www.google.com'),
+                ]
+            );
+            $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
+        }
+        else {
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
+        }
         $response = $bot->replyMessage($reply_token, $templateMessageBuilder);
         error_log(print_r($response->getHTTPStatus() . ' ' . $response->getRawBody(), TRUE));
 	}
