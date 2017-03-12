@@ -66,7 +66,7 @@ foreach ($events as $event) {
                     new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('No', 'No'),
                 ]
             );
-            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Confirm', $confirmTemplateBuilder);
+            $messageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Are you sure?', $confirmTemplateBuilder);
         }
         else {
             $messageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text . "\r\n #พี่หมีกล่าว...");
