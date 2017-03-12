@@ -27,7 +27,9 @@ foreach ($events as $event) {
 		);
 		$templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
 
-		$response = $bot->replyMessage($reply_token, $templateMessageBuilder);
+		$MessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('http://vignette3.wikia.nocookie.net/pokemon/images/7/71/216Teddiursa_OS_anime_2.png','http://vignette3.wikia.nocookie.net/pokemon/images/7/71/216Teddiursa_OS_anime_2.png');
+
+		$response = $bot->replyMessage($reply_token, $MessageBuilder);
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
 }
