@@ -24,11 +24,10 @@ foreach ($events as $event) {
 				new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('message label', 'test message'),
 				new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('uri label', 'https://www.google.com'),
 			]
-		)
-		$templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder)
+		);
+		$templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Main Menu', $buttonTemplateBuilder);
 
 		$response = $bot->replyMessage($reply_token, $templateMessageBuilder);
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 	}
 }
-?>
